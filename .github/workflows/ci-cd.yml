@@ -31,7 +31,7 @@ jobs:
           context: .
           file: docker/prod/Dockerfile
           push: true
-          tags: websoftdevs/musicbot:prod
+          tags: domismonstero/musicbot-dev:prod
 
   deploy:
     name: deploy
@@ -46,6 +46,5 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            sudo docker pull websoftdevs/musicbot:prod
-            sudo echo -e 'BOT_TOKEN=${{ secrets.BOT_TOKEN }}\nPREFIX=${{ secrets.PREFIX }}' | sudo tee MusicBot2/.env
-            cd MusicBot2 && sudo docker compose -f docker-compose-prod.yml up -d
+            sudo docker pull domismonstero/musicbot-dev:prod
+            cd music_bot && sudo docker compose -f docker-compose-prod.yml up -d
