@@ -26,6 +26,7 @@ client = Client(
 
 @client.event
 async def on_ready():
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Ptachora na budowie"))
     logging.info("Loaded prefix: %s", BOT_PREFIX)
     logging.info("Bot started!")
     for command in client.commands:
