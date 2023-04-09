@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: websoftdevs/musicbot:prod
+    image: domismonstero/musicbot-dev:prod
     command: ["python3", "app/app/main.py"]
     env_file:
       - .env
