@@ -5,17 +5,15 @@ logger = Logger("volume")
 
 
 @client.command(name="volume")
-async def _volume(self, ctx: commands.Context, *, volume: int):
-        """Sets the volume of the player."""
+async def volume(ctx, vol: int):
+    if ctx.voice_client is None:
+        return await ctx.send("Nie jestem połączony z żadnym kanałem głosowym.")
 
-    if not ctx.voice_state.is_playing:
-        return await ctx.send('Nothing being played at the moment.')
+    if not 0 < vol < 101:
+        return await ctx.send("Głośność musi być ustawiona w przedziale od 1 do 100.")
 
-    if 0 > volume > 100:
-        return await ctx.send('Volume must be between 0 and 100')
-
-    ctx.voice_state.volume = volume / 100
-    await ctx.send('Volume of the player set to {}%'.format(volume))
+    ctx.voice_client.source.volume = vol / 100
+    await ctx.send(f"Głośność muzyki ustawiona na {vol}%.")
 
 
 async def setup(bot):
